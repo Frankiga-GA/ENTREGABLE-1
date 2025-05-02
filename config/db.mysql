@@ -1,0 +1,34 @@
+CREATE DATABASE IF NOT EXISTS tienda_deportiva;
+USE tienda_deportiva;
+
+CREATE TABLE IF NOT EXISTS categorias (
+    idcategoria INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(50) NOT NULL UNIQUE
+);
+
+CREATE TABLE IF NOT EXISTS productos (
+    idproducto INT AUTO_INCREMENT PRIMARY KEY,
+    idcategoria INT NOT NULL,
+    nombre VARCHAR(100) NOT NULL,
+    descripcion TEXT,
+    precio DECIMAL(10,2) NOT NULL,
+    stock INT NOT NULL DEFAULT 0,
+    imagen1 VARCHAR(255),
+    imagen2 VARCHAR(255),
+    fecha_publicacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (idcategoria) REFERENCES categorias(idcategoria)
+);
+
+
+
+INSERT INTO categorias (nombre) VALUES
+('Fútbol'),
+('Básquet'),
+('Vóley'),
+('Running'),
+('Natación'),
+('Tenis'),
+('Ciclismo'),
+('Entrenamiento'),
+('Boxeo'),
+('Deportes extremos');
